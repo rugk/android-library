@@ -37,9 +37,9 @@ import okhttp3.RequestBody
 class PutMethod(
     uri: String,
     useOcsApiRequestHeader: Boolean,
-    val body: RequestBody
+    val body: RequestBody?
 ) : OkHttpMethodBase(uri, useOcsApiRequestHeader) {
     override fun applyType(temp: Request.Builder) {
-        temp.put(body)
+        body?.let { temp.put(it) }
     }
 }
